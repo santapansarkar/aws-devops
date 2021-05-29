@@ -1,0 +1,25 @@
+---
+Mappings:
+ EnvMap:
+   dev:
+     "allowed": "ami-010aff33ed5991201" 
+   prod:
+     "allowed": "ami-0b3acf3edf2397475"
+
+Parameters:
+  EnvTypeParameter:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+    Description: Enter enviornment details. Default is development. 
+
+Resources:
+   ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap [EnvMap, !Ref EnvTypeParameter, allowed]
+      AvailabilityZone: ap-south-1a
+      InstanceType: t2.micro
+      KeyName: aws-devops-kp        
