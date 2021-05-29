@@ -1,0 +1,12 @@
+---
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: ap-south-1a
+      InstanceType: t2.micro
+      KeyName: aws-devops-kp
+      ImageId: ami-06a0b4e3b7eb7a300
+      Tags:
+      - Key: cf 
+        Value: own  
