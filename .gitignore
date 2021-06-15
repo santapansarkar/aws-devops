@@ -1,6 +1,7 @@
 *.pdf
 *.pem
 code/
+*.csv
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

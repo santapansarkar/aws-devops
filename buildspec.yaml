@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+   install:
+    run-as: ec2-user
+    on-failure: ABORT 
+    runtime-versions:
+      python: 3.7  
+    commands:
+      - echo 'inside install phase within aws codebuild'
+   pre_build:
+     run-as: ec2-user
+     on-failure: ABORT
+     commands:
+       - echo 'inside pre-build phase of aws codebuild'
+       - pip install -r requirements.txt  
+
+   build:
+     run-as: ec2-user
+     on-failure: ABORT
+     commands:
+       - echo 'inside build phase of aws codebuild'
+       - python3 --version
+       - pip --version
+
+   post_build:
+     commands:
+       - echo 'inside post-build phase of aws codecommit'
