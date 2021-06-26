@@ -1,0 +1,3 @@
+Resources:
+  FirstBucket:
+    Type: "AWS::S3::Bucket"
