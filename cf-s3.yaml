@@ -1,3 +1,4 @@
 Resources:
   FirstBucket:
     Type: "AWS::S3::Bucket"
+    DeletionPolicy: "Retain"
