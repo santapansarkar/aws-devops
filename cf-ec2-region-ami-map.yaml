@@ -9,7 +9,7 @@ Mappings:
       HVMG2: ami-00bf4ae5a7909786a   
 Resources:
   MyEC2Instances:
-     ImageId: !!FindInMap 
+     ImageId: !FindInMap 
      - RegionMap 
      - !Ref "AWS::Region"
      - HVM64
