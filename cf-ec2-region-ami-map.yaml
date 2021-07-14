@@ -9,9 +9,8 @@ Mappings:
       HVMG2: ami-00bf4ae5a7909786a   
 Resources:
   MyEC2Instances:
-     ImageId: !FindInMap 
-     - RegionMap 
-     - !Ref "AWS::Region"
-     - HVM64
-     InstanceType: t2.micro
+    Type: AWS::EC2::Instance
+    Properties:
+       ImageId: !FindInMap [ RegionMap,!Ref "AWS:Region",HVM64] 
+       InstanceType: t2.micro
       
