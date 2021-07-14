@@ -1,0 +1,17 @@
+---
+Mappings:
+  RegionMap:
+    ap-south-1:
+      HVM64: ami-00bf4ae5a7909786c 
+      HVMG2: ami-059d1007dcf297b22 
+    ap-east-1:
+      HVM64: ami-00bf4ae5a7909786b
+      HVMG2: ami-00bf4ae5a7909786a   
+Resources:
+  MyEC2Instances:
+     ImageId: !!FindInMap 
+     - RegionMap 
+     - !Ref "AWS::Region"
+     - HVM64
+     InstanceType: t2.micro
+      
