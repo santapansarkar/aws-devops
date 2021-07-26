@@ -1,0 +1,18 @@
+Parameters:
+  ImageId:
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: /EC2/InstanceType  
+  InstanceType:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: /EC2/ImageId
+  AvailabilityZone:
+     Type: AWS::EC2::AvailabilityZone::Name
+     Default: ap-south-1
+Resources:
+  ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref ImageId
+      InstanceType: !Ref InstanceType
+      AvailabilityZone: !Ref AvailabilityZone
+      KeyName: AWS-DevOps-KP
