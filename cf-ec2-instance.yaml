@@ -1,18 +1,26 @@
 Parameters:
   ImageId:
-    Type: 'AWS::SSM::Parameter::Value<String>'
-    Default: /EC2/InstanceType  
-  InstanceType:
-    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /EC2/ImageId
-  AvailabilityZone:
-     Type: AWS::EC2::AvailabilityZone::Name
-     Default: ap-south-1
+  InstanceType:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /EC2/InstanceType  
+  SecurityGroupName:
+    Type: AWS::SSM::Parameter::Value<List<AWS::EC2::SecurityGroup::GroupName>>
+    Default: /EC2/SG
+
 Resources:
-  ec2Instance:
+  EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: !Ref ImageId
       InstanceType: !Ref InstanceType
-      AvailabilityZone: !Ref AvailabilityZone
-      KeyName: AWS-DevOps-KP
+      ImageId: !Ref ImageId
+      SecurityGroups: !Ref SecurityGroupName
+      UserData: 
+        Fn::Base64: |
+          #!/bin/bash -xe
+          yum update -y
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "Hello World from user data" > /var/www/html/index.html
