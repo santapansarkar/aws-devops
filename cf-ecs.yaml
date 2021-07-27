@@ -15,12 +15,21 @@ Resources:
           - ContainerPort: 80
             HostPort: 80
       Cpu: .25 vCPU
-      Family: String
-      InferenceAccelerators: 
-        - InferenceAccelerator
-      IpcMode: String
-      Memory: .5GB
+      Memory: .5 GB
       NetworkMode: awsvpc
       TaskRoleArn: arn:aws:iam::350102312519:role/ecsTaskExecutionRole
-
-                
+  MyECSService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref MyECSInstance
+      DesiredCount: 1
+      LaunchType: EC2
+      ServiceName: cf-ecs-service
+      TaskDefinition: cf-ecs-MyECSTaskDefintion-nXooTbLJmpem    
+      NetworkConfiguration: 
+          AwsvpcConfiguration: 
+              AssignPublicIp: ENABLED
+              SecurityGroups: 
+                - sg-0168fe3cd24ccfe14
+              Subnets: 
+                - subnet-188b6273
