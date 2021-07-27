@@ -1,0 +1,26 @@
+Resources:
+  MyECSInstance:
+    Type: AWS::ECS::Cluster
+    Properties: 
+      CapacityProviders: 
+        - FARGATE
+      ClusterName: cf-ecs-clsuter
+  MyECSTaskDefintion:
+    Type: AWS::ECS::TaskDefinition
+    Properties: 
+      ContainerDefinitions: 
+        - Name: hugo-container
+          Image: 350102312519.dkr.ecr.ap-south-1.amazonaws.com/hugo-ecr:1.0.0
+          PortMappings: 
+          - ContainerPort: 80
+            HostPort: 80
+      Cpu: .25 vCPU
+      Family: String
+      InferenceAccelerators: 
+        - InferenceAccelerator
+      IpcMode: String
+      Memory: .5GB
+      NetworkMode: awsvpc
+      TaskRoleArn: arn:aws:iam::350102312519:role/ecsTaskExecutionRole
+
+                
