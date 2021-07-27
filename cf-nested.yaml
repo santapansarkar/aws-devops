@@ -1,0 +1,5 @@
+Resources:
+  NestedTemplate:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://src-cf.s3.ap-south-1.amazonaws.com/cf-s3.yaml
